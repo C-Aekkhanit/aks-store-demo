@@ -36,8 +36,8 @@ jobs:
         id: test-variables
         run: |
           echo ${{ steps.set-variables.outputs.IMAGE }}
-          echo ${{ VARS.ACR_CLIENT_ID }}
-          echo ${{ VARS.ACR_CLIENT_PASSWORD }}
+          echo ${{ secrets.ACR_CLIENT_ID }}
+          echo ${{ secrets.ACR_CLIENT_PASSWORD }}
 
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,8 +49,8 @@ jobs:
         uses: azure/docker-login@v2
         with:
           login-server: ${{ VARS.ACR_REGISTRY }}
-          username: ${{ VARS.ACR_CLIENT_ID }}
-          password: ${{ VARS.ACR_CLIENT_PASSWORD }}
+          username: ${{ secrets.ACR_CLIENT_ID }}
+          password: ${{ secrets.ACR_CLIENT_PASSWORD }}
 
       - name: Build and push
         uses: docker/build-push-action@v2

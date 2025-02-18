@@ -36,6 +36,8 @@ jobs:
         id: test-variables
         run: |
           echo ${{ steps.set-variables.outputs.IMAGE }}
+          echo ${{ secrets.ACR_CLIENT_ID }}
+          echo ${{ secrets.ACR_CLIENT_PASSWORD }}
 
       - name: Checkout code
         uses: actions/checkout@v2
